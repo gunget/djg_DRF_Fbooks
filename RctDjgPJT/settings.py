@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 import my_setting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -62,12 +64,12 @@ ROOT_URLCONF = 'RctDjgPJT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
-        ],
         # 'DIRS': [
-        #     os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build')
+        #     'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
         # ],
+        'DIRS': [
+            os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,12 +137,12 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
-# STATICFILES_DIRS = [
-#     os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static')
-# ]
 STATICFILES_DIRS = [
-    'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build\\static'
+    os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static'),
 ]
+# STATICFILES_DIRS = [
+#     'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build\\static'
+# ]
 
 
 MEDIA_URL = '/media/'
