@@ -94,7 +94,10 @@
  . setting.py에 statcfile(js css등)을 어디서 가져올 건지 지정해야 함
    STATICFILES_DIRS = [ str(ROOT_DIR.path('front', 'build', 'static')),	# 추가
 - 이렇게 하면 장고(8000번)를 열면 빌드된 리액트의 프론트 단이 보임
-2) 배포단계에서 프론트로 사용하기 위해 설정하기
+1-2) 배포단계에서 프론트로 사용하기 위해 설정하기
 - 기본 개념은 동일. 차이라면, 빌드된 파일을 장고의 특정 폴더로 옮기고 setting에서 template와 staticfiles_url을 해당 위치로
 옮겨주면 됨.
 - 이후 실제 배포는 장고의 배포 절차를 따라가면 될 듯
+
+2) AXIOS를 통한 데이터 주고 받기
+- npm i axios
