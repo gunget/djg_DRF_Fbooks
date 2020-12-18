@@ -33,6 +33,7 @@ ALLOWED_HOSTS = my_setting.ALLOWED_HOSTS
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,10 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Fbooks.apps.FbooksConfig',
     'corsheaders',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 
@@ -62,7 +62,12 @@ ROOT_URLCONF = 'RctDjgPJT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
+        ],
+        # 'DIRS': [
+        #     os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build')
+        # ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +135,12 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
-
+# STATICFILES_DIRS = [
+#     os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static')
+# ]
+STATICFILES_DIRS = [
+    'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build\\static'
+]
 
 
 MEDIA_URL = '/media/'
@@ -138,6 +148,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #사용자가 업로드한 파일 �
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
+CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-]
+)

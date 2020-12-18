@@ -27,6 +27,6 @@ route.register('users', views.UserView, 'users')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(route.urls)),
-    path('', include(route.urls)),
+    path("", views.ReactAppView.as_view()),
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
