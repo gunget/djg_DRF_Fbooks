@@ -64,9 +64,9 @@ ROOT_URLCONF = 'RctDjgPJT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [
-        #     'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
-        # ],
+        'DIRS': [
+            'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
+        ],
         'DIRS': [
             os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build'),
         ],
