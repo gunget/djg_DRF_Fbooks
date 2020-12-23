@@ -68,7 +68,7 @@ TEMPLATES = [
             'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
         ],
         'DIRS': [
-            os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build'),
+            os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'javascript', 'react', 'rct_hooks_phonebooks', 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -136,9 +136,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static'),
+    os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static'),
 ]
 # STATICFILES_DIRS = [
 #     'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build\\static'
