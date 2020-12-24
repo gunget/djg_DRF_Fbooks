@@ -18,6 +18,8 @@ import my_setting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# >>> Path('settings.py').resolve().parent.parent 실제 입력해본 경로
+# WindowsPath('D:/개인자료/김건/ReDjPJT/RctDjgPJT')
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +38,8 @@ ALLOWED_HOSTS = my_setting.ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Fbooks.apps.FbooksConfig',
     'corsheaders',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -57,7 +67,23 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 
+#ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
+#ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+REST_USE_JWT = True
+ACCOUNT_LOGOUT_ON_GET = True
 
 ROOT_URLCONF = 'RctDjgPJT.urls'
 
