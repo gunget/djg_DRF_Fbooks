@@ -128,3 +128,4 @@
 - pip install django-rest-auth, pip install django-allauth설치 및 관련세팅. 링크의 설명 참조.
  . https://freekim.tistory.com/8?category=887076
  . https://junlab.tistory.com/214
+ . https://dev-yakuza.posstree.com/ko/django/jwt/ json web token설정 관련
