@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
 from Fbooks import views
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 route = routers.DefaultRouter()
 route.register('fbooks', views.FbooksView, 'Fbooks')
@@ -30,6 +31,9 @@ urlpatterns = [
     path("", views.ReactAppView.as_view()),
     path("rest-auth/", include('rest_auth.urls')),
     path("rest-auth/registration/", include('rest_auth.registration.urls')),
+    path('api-jwt-auth/', obtain_jwt_token),          # JWT 토큰 획득
+    path('api-jwt-auth/refresh/', refresh_jwt_token), # JWT 토큰 갱신
+    path('api-jwt-auth/verify/', verify_jwt_token),   # JWT 토큰 확인
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

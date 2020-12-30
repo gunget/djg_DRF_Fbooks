@@ -129,3 +129,10 @@
  . https://freekim.tistory.com/8?category=887076
  . https://junlab.tistory.com/214
  . https://dev-yakuza.posstree.com/ko/django/jwt/ json web token설정 관련
+
+
+ cf) 다른 pc에서 장고 프로젝트 받아오기(시도해봐야 함)
+ - 프로젝트 폴더로 들어가 myvenv 구성
+ - git clone으로 프로젝트 받아오기
+ - pip install -r requirements.txt로 dependancy설치
+   (다른 곳에서 git에 올릴때 pip freeze > requirements.txt해서 관련 패키지 정보를 미리 저장해놔야 함)

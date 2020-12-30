@@ -69,25 +69,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#         'rest_framework.authentication.BasicAuthentication',
-#     ),
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 
-# JWT_AUTH = {
-#     'JWT_SECRET_KEY': 'test',
-#     # 'JWT_SECRET_KEY': SECRET_KEY,
-#     'JWT_ALGORITHM': 'HS256',
-#     'JWT_ALLOW_REFRESH': True,
-#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
-#     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
-# }
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
+}
 
 # JWT_SECRET_KEY: JWT의 비밀키(Secret Key)로 어떤걸 사용할지 작성합니다. 여기에서는 장고(django)와 같은 비밀키를 사용하였지만 사용할 때는 다른 키를 사용하시길 권장합니다.
 # JWT_ALGORITHM: JWT 암호화에 사용되는 알고리즘을 지정합니다.
