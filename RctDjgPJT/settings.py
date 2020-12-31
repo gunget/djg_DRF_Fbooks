@@ -20,8 +20,14 @@ import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 회사pc값
 # >>> Path('settings.py').resolve().parent.parent 실제 입력해본 경로
 # WindowsPath('D:/개인자료/김건/ReDjPJT/RctDjgPJT')
+
+# 집pc값
+# >>> Path('settings.py').resolve().parent.parent
+# WindowsPath('D:/김건/개인자료/python 수업/RctDjgPJT/RctDjgPJT')
 
 
 # Quick-start development settings - unsuitable for production
@@ -112,11 +118,11 @@ ROOT_URLCONF = 'RctDjgPJT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': [
+        #     'D:\\김건\\개인자료\\JavaScript_PJT\\Nomad\\rct_hooks_phonebook\\build'
+        # ],
         'DIRS': [
-            'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build'
-        ],
-        'DIRS': [
-            os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'javascript', 'react', 'rct_hooks_phonebooks', 'build'),
+            os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(BASE_DIR))),'JavaScript_PJT', 'Nomad', 'rct_hooks_phonebook', 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -186,12 +192,14 @@ USE_TZ = False
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'javascript', 'react', 'rct_hooks_phonebooks', 'build', 'static'),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(BASE_DIR))),'JavaScript_PJT', 'Nomad', 'rct_hooks_phonebook', 'build', 'static'),
 ]
 # STATICFILES_DIRS = [
-#     'D:\\개인자료\\김건\\javascript\\react\\rct_hooks_phonebooks\\build\\static'
+#     'D:\\김건\\개인자료\\JavaScript_PJT\\Nomad\\rct_hooks_phonebook\\build\\static'
 # ]
-
+# 집pc값
+# >>> Path('settings.py').resolve().parent.parent
+# WindowsPath('D:/김건/개인자료/python 수업/RctDjgPJT/RctDjgPJT')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #사용자가 업로드한 파일 관리

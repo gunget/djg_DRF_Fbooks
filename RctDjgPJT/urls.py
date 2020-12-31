@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
@@ -26,14 +26,17 @@ route.register('fbooks', views.FbooksView, 'Fbooks')
 route.register('users', views.UserView, 'users')
 
 urlpatterns = [
+    # djago가 담당해야하는 BackEnd Urls. 다음을 주소창에 직접입력할 시 장고가 대답
     path('admin/', admin.site.urls),
     path('api/', include(route.urls)),
-    path("", views.ReactAppView.as_view()),
     path("rest-auth/", include('rest_auth.urls')),
     path("rest-auth/registration/", include('rest_auth.registration.urls')),
     path('api-jwt-auth/', obtain_jwt_token),          # JWT 토큰 획득
     path('api-jwt-auth/refresh/', refresh_jwt_token), # JWT 토큰 갱신
     path('api-jwt-auth/verify/', verify_jwt_token),   # JWT 토큰 확인
+
+    # React담당해야하는 FrontEnd Urls
+    re_path(r'^(?:.*)/?$', views.ReactAppView.as_view()), #그외 모든 url을 리액트가 처리
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
