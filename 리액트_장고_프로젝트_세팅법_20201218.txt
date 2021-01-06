@@ -20,7 +20,11 @@
  . (manage.py가 있는 위치에서) touch my_setting.py : 내 설정파일 만들기
  . SECRET_KEY = '~~~.' : settings.py의 secret_key부분 분리 (DB, LocalHoset도 분리 추천)
  . setting.py파일에 아래처럼 입력
+   from pathlib import Path
+   import os, sys
+   sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))) #시스템 패스에 추가하는 것
    import my_settings
+ 
    SECRET_KEY = my_settings.SECRET_KEY
  . LANGUAGE_CODE = 'ko-kr' : 한국기준으로 설정 변경
    TIME_ZONE = 'Asia/Seoul'
@@ -79,7 +83,8 @@
 - serializer.py 작성:api로 호출하기 위해 모델을 serialize해야 함
  . Nth객체 설정 시, 1차 모델에 삽입할 내용을 기록해줘야 함. 이때 2차 모델에 설정해뒀던 related_name을 컬럼명으로
   반드시 사용해야 함!!!
-- 완성후 view설정(serilaizer클래스 설정) 및 url설정(router를 사용해 설정)
+- 완성후 view설정(serilaizer클래스 설정) 및 url설정(router를 사용해 루트 url설정)
+ . router를 이용해 루트 url에서 설정해야 api형식으로 제공 조회가 가능해짐
  
 2. 리액트를 프론트로 사용하기
 1) 개발단계에서 프론트로 사용하기 위해 설정하기
@@ -124,15 +129,35 @@
   App.js로 가서 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
   <Router>로 감싸고 그 안에 <Route path="url" component={띄울컴포넌트}>삽입. 간단하게 상호간 라우팅 됨
   해당 컴포넌트에서 바로 다른 경로로 이동하고 싶다면 <Link>를 사용(html의 a태그 기능)
+ . URL로 바로 이동하는 것 방지하기 위해 HOC기술 적용. 이때는 history를 못쓰니까 props로 전달.
 4-2)django인증 기능 구현
-- pip install django-rest-auth, pip install django-allauth설치 및 관련세팅. 링크의 설명 참조.
+- pip install django-rest-auth, pip install django-allauth설치 및 관련세팅. 링크의 설명 참조. 
  . https://freekim.tistory.com/8?category=887076
  . https://junlab.tistory.com/214
  . https://dev-yakuza.posstree.com/ko/django/jwt/ json web token설정 관련
+- settings.py 세팅, rest_auth, rest_framework관련 여러가지, allauth(장고 기본제공 인증기능 활용)관련 여러가지. 
+ . RctDjgPJT의 settings참조.
+ . JWT기반 인증방식을 구현하기 위해 RestFrameWork세팅 JWT_AUTH등 세팅해야함
+ . login에 email이 필요없도록 verification은 none으로 만들 것
+- 루트 urls.py는 djago가 담당하는 url과(접근가능), 리액타가 처리하는 url을 구분해야 함
 
-
- cf) 다른 pc에서 장고 프로젝트 받아오기(시도해봐야 함)
- - 프로젝트 폴더로 들어가 myvenv 구성
- - git clone으로 프로젝트 받아오기
- - pip install -r requirements.txt로 dependancy설치
-   (다른 곳에서 git에 올릴때 pip freeze > requirements.txt해서 관련 패키지 정보를 미리 저장해놔야 함)
+ cf) 다른 pc에서 장고 프로젝트 받아오기
+-------- 장고 프로젝트 github에서 받아 실행하는 방법
+1. 루트폴더를 만들고 vscode로 연다.
+2. 터미널(git bash)로 들어가 가상환경을 만든다.
+- python -m venv myvenv
+3. 가상환경을 activate한다.
+- source myvenv/Scripts/activate (git bash 상태에서)
+4. github에서 해당 프로젝트를 clone한다
+- 용량문제때문에 github에는 보통 venv, DB는 제외하고, 해당 프로젝트(startproject)만 올린다.
+- git clone URLs
+- 성공하면 git에설정한 프로젝트명으로 폴더가 생긴다.
+- 장고, 장고에서 사용한 패키지, gitIgnore에 추가했던 내용(mySetting)등은 들어있지 않다.
+5. 프로젝트 폴더로 이동해 장고와 사용했던 패키지들을 설치한다(git master상태).
+- pip install django
+ . python -m pip install --upgrade pip : pip 업그레이드 하기
+- pip install -r requirements.txt : 사용했던 패키지 설치
+ . 모두 myvenv내 Lib/SitePackage에 설치 된다.
+6. sqlite로 DB설정하기
+ . python manage.py makemigrations & python manage.py migrate
+7. 정상적으로 로드 되는지 보고 파일의 경로 설정등을 수정하기
